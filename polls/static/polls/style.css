@@ -3,6 +3,10 @@ body {
 	padding-left: 100px;
 }
 
+h1 {
+	color: rgb(88, 88, 88)
+}
+
 #header {
 	background-color: rgb(185, 43, 39);
 }
@@ -16,7 +20,7 @@ body {
 #mainview {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
-	margin-top: 80px;
+	margin-top: 50px;
 }
 
 #header a {
@@ -46,7 +50,7 @@ body {
 }
 
 .category {
-	color: #a0c0c0;
+	color: #acacac;
 }
 
 img.resize {
@@ -103,4 +107,80 @@ hr.hrstyle {
 
 .comment {
 	margin-left: 20px;
+}
+
+.time {
+    color: #acacac;
+    font-size: 0.75em;
+}
+
+.username {
+	font-size: 1.2em;
+	border-bottom: 1px solid transparent;
+	display: inline-block;
+	line-height: 0.85;
+	text-shadow:
+		2px 2px white,
+		2px -2px white,
+		-2px 2px white,
+		-2px -2px white;
+}
+
+.username:hover {
+	font-size: 1.2em;
+	text-decoration: none;
+	color: rgb(58, 58, 58);
+	border-bottom: 1px solid currentColor;
+	display: inline-block;
+	line-height: 0.85;
+	text-shadow:
+		2px 2px white,
+		2px -2px white,
+		-2px 2px white,
+		-2px -2px white;
+}
+
+.accent-text {
+    font-family: "Times New Roman", Georgia;
+    color: rgb(58, 58, 58);
+}
+
+.answer-text {
+	padding-top: 5px;
+    font-size: 1.35em;
+}
+
+.question-text {
+    font-size: 1em;
+	color: black;
+	border-bottom: 1px solid transparent;
+	display: inline-block;
+	line-height: 0.85;
+	text-shadow:
+		2px 2px white,
+		2px -2px white,
+		-2px 2px white,
+		-2px -2px white;
+}
+
+.question-text:hover {
+    font-size: 1em;
+    color: black;
+	text-decoration: none;
+	border-bottom: 1px solid currentColor;
+	display: inline-block;
+	line-height: 0.85;
+	text-shadow:
+		2px 2px white,
+		2px -2px white,
+		-2px 2px white,
+		-2px -2px white;
+}
+
+.content-wrapper {
+	background-color: #fff;
+	margin: 0px 10px 0px 10px;
+	padding: 5px 20px 5px 20px;
+	border-top: solid 0.5px;
+	border-color: rgb(214, 214, 214);
 }

@@ -28,7 +28,7 @@ def home(request, new_feed='0'):
 	elif new_feed == '1':
 		questions = Question.objects.order_by('-time')
 	else:
-		answers = Answer.objects.values('content', 'time', 'user__username', 'question__content', 'question__id').annotate(vote_num = Count('voters')).order_by('-vote_num')
+		answers = Answer.objects.values('content', 'time', 'user__username', 'question__content', 'question__id', 'user__id').annotate(vote_num = Count('voters')).order_by('-vote_num')
 	return render(request, 'polls/home.html', context = {'top_users' : top_users, 'questions' : questions, 'new_feed' : new_feed, 'answers' : answers})
 
 @login_required

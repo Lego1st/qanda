@@ -1,0 +1,9 @@
+{% load static %}
+{% for answer in answers %}
+    <div class="content-wrapper">
+        <h2><a href="{% url 'polls:details' answer.question__id %}" class="question-text accent-text">{{answer.question__content}}</a></h2>
+        <div><i>Answered by </i><a href="{% url 'polls:profile' answer.user__id %}" class="accent-text username">{{answer.user__username}}</a></div>
+        <div class="time"> {{ answer.time }} </div>
+        <p class="answer-text accent-text"> {{ answer.content }} </p>
+    </div>
+{% endfor %}

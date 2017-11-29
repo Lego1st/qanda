@@ -1,0 +1,16 @@
+<!-- Modal content-->
+<div class="modal-content">
+    <form id="question_form" method="post" class="form" role="form" action="{% url 'polls:newquestion' %}">
+        {% csrf_token %}
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">What is your question ?</h4>
+        </div>
+        <div class="modal-body">
+            {{ form.as_p }}
+        </div>
+        <div class="modal-footer">
+            <button name='submit' class="btn btn-default">Ask</button>
+        </div>
+    </form>
+</div>

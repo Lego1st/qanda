@@ -1,0 +1,41 @@
+{% extends "polls/base.html" %}
+{% load static%}
+
+{% block content %}
+		<div class="container-fluid" id="mainview">
+			<!-- left pannel -->
+			<div class="col-xs-2 test1 left-panel" >
+				<ul>
+					<li><a href="#">Top active users</a></li>
+					
+						{% for username, userid in top_users %}
+							<div class="top_users"><li><a href="{% url 'polls:profile' userid %}">{{username}}</a></li></div>
+						{% endfor %}
+					{% if new_feed == '0' %}
+					<li><a href="{% url 'polls:home' 1 %}">Recent</a></li>
+					{% else %}
+					<li><a href="{% url 'polls:home' %}">Top questions</a></li>
+					{% endif %}
+					<li><a href="{% url 'polls:home' 2 %}">Top answers</a></li>
+				</ul>
+			</div>
+			<!-- main view  -->
+			<div class="col-xs-8 test2">
+				{% if new_feed == '2' %}
+					{% for answer in answers %}
+						<div class="box">
+							<h2><a href="{% url 'polls:details' answer.question__id %}">{{answer.question__content}}</a></h2>
+							<div class="row">
+								<div class="col-xs-1"><img class="resize" src="{% static 'polls/images/default_ava.jpg' %}" alt="User_avatar"></div>
+								<div class="col-xs-1">{{ answer.user__username }}</div>
+							</div>
+							<div> {{ answer.time }} </div>
+							<p> {{ answer.content }} </p>
+						</div>
+					{% endfor %}
+				{% else %}
+					{% include 'polls/questions.html' with questions=questions %}
+				{% endif %}
+			</div>
+		</div>
+{% endblock content %}

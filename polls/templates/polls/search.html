@@ -1,0 +1,9 @@
+{% extends "polls/base.html" %}
+{% load static%}
+
+{% block content %}
+	<div class="container-fluid" id="mainview">
+		<h3> <i>Result for:</i> '{{ keyword }}'' </h3>
+		{% include 'polls/questions.html' with questions=questions %}
+	</div>
+{% endblock content %}

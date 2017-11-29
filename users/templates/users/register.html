@@ -1,0 +1,11 @@
+{% extends "polls/base.html" %}
+{% block content %}
+<div class="container-fluid col-xs-6" id="qbox">
+	<form method="post" action="{% url 'users:register' %}">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button name="submit">register</button>
+		<input type="hidden" name="next" value="{% url 'polls:home' %}" />
+	</form>
+</div>
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends "polls/base_profile.html" %}
+{% load static%}
+{% block procontent %}
+<div class="col-xs-8 test2">
+	<h2>User's answer</h2>
+	{% for answer, question in aqs %}
+		<div class="box">
+			<h2><a href="{% url 'polls:details' question.id %}">{{question.content}}</a></h2>
+			<div class="row">
+				<div class="col-xs-1"><img class="resize" src="{% static 'polls/images/default_ava.jpg' %}" alt="User_avatar"></div>
+				<div class="col-xs-1">{{ username }}</div>
+			</div>
+			<div> {{ answer.time }} </div>
+			<p> {{ answer.content }} </p>
+		</div>
+	{% endfor %}
+</div>
+{% endblock procontent %}

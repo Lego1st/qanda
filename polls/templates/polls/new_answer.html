@@ -1,0 +1,19 @@
+<div>
+
+	<form id="new_ans_form" method="post" class="form" role="form" action="{% url 'polls:newanswer' question_id %}">
+		{% csrf_token %}
+
+		<div class="row" >
+			<div class="col-xs-2">
+				<button class="btn btn-primary" name='answer'> Answer </button>
+			</div>
+
+		</div>
+		<br>
+		<div class="row">
+			{{ form.as_p }}
+		</div>
+		<!-- <input class="col-xs-12 form-control" type="text" name="answer" placeholder="Your answer ..."> -->
+	</form>
+
+</div>

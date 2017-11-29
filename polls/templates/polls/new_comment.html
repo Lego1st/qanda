@@ -1,0 +1,9 @@
+<div>
+	<form method="post" class="form" role="form" action="{% url 'polls:newcomment' answer_id %}">
+		{% csrf_token %}
+		<div class="row"> 
+			<span class="col-xs-10"> {{ form.as_p }}</span>
+			<span class="col-xs-2"><input class="btn btn-default" type="submit" value="Rep"></span>
+		</div>
+	</form>
+</div>

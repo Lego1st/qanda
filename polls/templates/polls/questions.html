@@ -1,0 +1,11 @@
+{% load static %}
+{% for question in questions %}
+	<div class="box">
+		<div><a href="{% url 'polls:category' question.category %}" class="category"><i>Category:</i> {{question.category}}</a></div>
+		<h2><a href="{% url 'polls:details' question.id %}">{{question.content}}</a></h2>
+		<div>{{question.time}}</div>
+		<br>
+		<div><i>Asked by </i><a href="{% url 'polls:profile' question.user.id %}">{{question.user.username}}</div>
+		
+	</div>
+{% endfor %}

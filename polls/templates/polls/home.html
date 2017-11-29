@@ -4,25 +4,25 @@
 {% block content %}
 		<div class="container-fluid" id="mainview">
 			<!-- left pannel -->
-			<div class="col-xs-2 left-panel" style="margin-top:6.25%" >
-				<div class="top-text">Tops</div>
+			<div class="col-xs-2 left-panel" style="margin-top:59px" >
+				<div class="side-pannel-header" style="margin-bottom:10px">Tops</div>
 				<hr class="hrstyle" width="100%"> 
-				<ul class="top-text" style="padding:0">
-					<li>Top active users:</li>
+				<ul style="padding:0">
+					<li class="side-pannel-text pannel-item">Top active users:</li>
 					
 						{% for username, userid in top_users %}
-							<div style="padding-left:25%"><li><a href="{% url 'polls:profile' userid %}" class="username accent-text" style="color:#666">{{username}}</a></li></div>
+							<div style="padding-left:25%"><li class="pannel-item"><a href="{% url 'polls:profile' userid %}" class="username accent-text" style="color:#666">{{username}}</a></li></div>
 						{% endfor %}
 					{% if new_feed == '0' %}
-					<li><a href="{% url 'polls:home' 1 %}" class="top-text-link">Recent</a></li>
+					<li class="pannel-item"><a href="{% url 'polls:home' 1 %}" class="side-pannel-text">Recent</a></li>
 					{% else %}
-					<li><a href="{% url 'polls:home' %}" class="top-text-link">Top questions</a></li>
+					<li class="pannel-item"><a href="{% url 'polls:home' %}" class="side-pannel-text">Top questions</a></li>
 					{% endif %}
-					<li><a href="{% url 'polls:home' 2 %}" class="top-text-link">Top answers</a></li>
+					<li class="pannel-item"><a href="{% url 'polls:home' 2 %}" class="side-pannel-text">Top answers</a></li>
 				</ul>
 			</div>
 			<!-- main view  -->
-			<div class="col-xs-8 test2">
+			<div class="col-xs-6">
 				{% if new_feed == '2' %}
 					<h1 style="margin-bottom:5%">Top Answers</h1>
 					{% include 'polls/answers.html' with answers=answers %}

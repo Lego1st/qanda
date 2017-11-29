@@ -12,8 +12,8 @@ h1 {
 }
 
 #mytitle {
-	font-family: 'Baloo Tamma', cursive;
-	font-size: 30px;
+	font-family: "Times New Roman", Georgia;
+	font-size: 34px;
 	color: #fff;
 }
 
@@ -51,6 +51,11 @@ h1 {
 
 .category {
 	color: #acacac;
+}
+
+.category:hover {
+	color: #2b6dad;
+	text-decoration: none;
 }
 
 img.resize {
@@ -105,39 +110,23 @@ hr.hrstyle {
     box-shadow: inset 0 1px 0 rgba(255,255,255,.1),0 0px 0 rgba(255,255,255,.1);
 }
 
-.comment {
-	margin-left: 20px;
-}
-
 .time {
     color: #acacac;
-    font-size: 0.75em;
+    font-size: 11px;
 }
 
 .username {
-	font-size: 1.2em;
+	font-size: 18px;
 	border-bottom: 1px solid transparent;
 	display: inline-block;
 	line-height: 0.85;
-	text-shadow:
-		2px 2px white,
-		2px -2px white,
-		-2px 2px white,
-		-2px -2px white;
 }
 
 .username:hover {
-	font-size: 1.2em;
+	font-size: 18px;
 	text-decoration: none;
 	color: rgb(58, 58, 58);
 	border-bottom: 1px solid currentColor;
-	display: inline-block;
-	line-height: 0.85;
-	text-shadow:
-		2px 2px white,
-		2px -2px white,
-		-2px 2px white,
-		-2px -2px white;
 }
 
 .accent-text {
@@ -147,11 +136,11 @@ hr.hrstyle {
 
 .answer-text {
 	padding-top: 5px;
-    font-size: 1.35em;
+    font-size: 20px;
 }
 
 .question-text {
-    font-size: 1em;
+    font-size: 30px;
 	color: black;
 	border-bottom: 1px solid transparent;
 	display: inline-block;
@@ -164,17 +153,9 @@ hr.hrstyle {
 }
 
 .question-text:hover {
-    font-size: 1em;
     color: black;
 	text-decoration: none;
 	border-bottom: 1px solid currentColor;
-	display: inline-block;
-	line-height: 0.85;
-	text-shadow:
-		2px 2px white,
-		2px -2px white,
-		-2px 2px white,
-		-2px -2px white;
 }
 
 .content-wrapper {
@@ -185,18 +166,49 @@ hr.hrstyle {
 	border-color: rgb(214, 214, 214);
 }
 
-.top-text {
-	font-size: 15px;
-	color: #666
+.side-pannel-header {
+	font-size: 16px;
 }
 
-.top-text-link {
-	font-size: 15px;
+.side-pannel-text {
+	font-size: 14px;
 	color: #666;
+	text-decoration: none
 }
 
-.top-text-link:hover {
-	font-size: 15px;
+li.pannel-item {
+	margin-top: 10px;
+}
+
+a.side-pannel-text:hover {
 	color: #2b6dad;
 	text-decoration: none;
+}
+
+li a.username {
+	font-size: 18px;
+	border-bottom: 1px solid transparent;
+	display: inline-block;
+	line-height: 0.85;
+}
+
+li a.username:hover{
+	font-size: 18px;
+	text-decoration: none;
+	color: rgb(58, 58, 58);
+	border-bottom: 1px solid currentColor;
+}
+.tagging-text {
+	font-size: 14px;
+	font-style: italic;
+}
+
+.comment-text {
+	font-size: 13px
+}
+.cmt-item {
+	padding: 10px
+}
+.comment {
+	background-color: rgb(243, 242, 242);
 }

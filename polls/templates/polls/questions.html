@@ -5,7 +5,7 @@
 		<h2><a href="{% url 'polls:details' question.id %}" class="accent-text question-text">{{question.content}}</a></h2>
 		<div class="time">{{question.time}}</div>
 		<br>
-		<div><i>Asked by </i><a href="{% url 'polls:profile' question.user.id %}" class="accent-text username">{{question.user.username}}</a></div>
+		<div><span class="tagging-text">Asked by </span><a href="{% url 'polls:profile' question.user.id %}" class="accent-text username">{{question.user.username}}</a></div>
 		
 	</div>
 {% endfor %}

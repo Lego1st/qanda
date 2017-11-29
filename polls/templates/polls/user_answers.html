@@ -2,7 +2,7 @@
 {% load static%}
 {% block procontent %}
 <div class="col-xs-8 test2">
-	<h2>User's answer</h2>
+	<h2>Answers</h2>
 	{% for answer, question in aqs %}
 		<div class="box">
 			<h2><a href="{% url 'polls:details' question.id %}">{{question.content}}</a></h2>

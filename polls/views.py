@@ -142,13 +142,13 @@ def user_answers(request, user_id):
 	answers = Answer.objects.values('content', 'time', 'user__username', 'question__content', 'question__id', 'user__id', 'question__category').filter(user__id = user_id)
 	# aqs = [(answer, Question.objects.get(id = answer.question_id)) for answer in answers]
 	username = User.objects.get(id=user_id).username
-	context = {'answers': answers, 'user_id' : user_id, 'username' : username}
+	context = {'answers': answers, 'user_id' : int(user_id), 'username' : username}
 	return render(request, 'polls/user_answers.html', context)
 
 @login_required
 def user_follows(request, user_id):
 	fl_questions = Question.objects.filter(followers = user_id)
-	context = {'fl_questions' : fl_questions, 'user_id' : user_id, 'username' : User.objects.get(id=user_id).username}
+	context = {'fl_questions' : fl_questions, 'user_id' : int(user_id), 'username' : User.objects.get(id=user_id).username}
 	return render(request, 'polls/user_follows.html', context)
 
 @login_required

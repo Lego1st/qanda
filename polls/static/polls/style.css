@@ -80,8 +80,8 @@ img.resize {
 }
 
 hr.hrstyle {
-	border-top: 1px solid red;
-	margin-top: 100px;
+	border-top: 1px solid rgb(214, 214, 214);
+	margin-top: 1px;
 	margin-bottom: 0px;
 }
 
@@ -183,4 +183,20 @@ hr.hrstyle {
 	padding: 5px 20px 5px 20px;
 	border-top: solid 0.5px;
 	border-color: rgb(214, 214, 214);
+}
+
+.top-text {
+	font-size: 15px;
+	color: #666
+}
+
+.top-text-link {
+	font-size: 15px;
+	color: #666;
+}
+
+.top-text-link:hover {
+	font-size: 15px;
+	color: #2b6dad;
+	text-decoration: none;
 }

@@ -4,19 +4,21 @@
 {% block content %}
 		<div class="container-fluid" id="mainview">
 			<!-- left pannel -->
-			<div class="col-xs-2 test1 left-panel" >
-				<ul>
-					<li><a href="#">Top active users</a></li>
+			<div class="col-xs-2 left-panel" style="margin-top:6.25%" >
+				<div class="top-text">Tops</div>
+				<hr class="hrstyle" width="100%"> 
+				<ul class="top-text" style="padding:0">
+					<li>Top active users:</li>
 					
 						{% for username, userid in top_users %}
-							<div class="top_users"><li><a href="{% url 'polls:profile' userid %}">{{username}}</a></li></div>
+							<div style="padding-left:25%"><li><a href="{% url 'polls:profile' userid %}" class="username accent-text" style="color:#666">{{username}}</a></li></div>
 						{% endfor %}
 					{% if new_feed == '0' %}
-					<li><a href="{% url 'polls:home' 1 %}">Recent</a></li>
+					<li><a href="{% url 'polls:home' 1 %}" class="top-text-link">Recent</a></li>
 					{% else %}
-					<li><a href="{% url 'polls:home' %}">Top questions</a></li>
+					<li><a href="{% url 'polls:home' %}" class="top-text-link">Top questions</a></li>
 					{% endif %}
-					<li><a href="{% url 'polls:home' 2 %}">Top answers</a></li>
+					<li><a href="{% url 'polls:home' 2 %}" class="top-text-link">Top answers</a></li>
 				</ul>
 			</div>
 			<!-- main view  -->

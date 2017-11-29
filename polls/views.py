@@ -139,10 +139,10 @@ def profile(request, user_id):
 
 @login_required
 def user_answers(request, user_id):
-	answers = Answer.objects.filter(user__id = user_id)
-	aqs = [(answer, Question.objects.get(id = answer.question_id)) for answer in answers]
+	answers = Answer.objects.values('content', 'time', 'user__username', 'question__content', 'question__id', 'user__id', 'question__category').filter(user__id = user_id)
+	# aqs = [(answer, Question.objects.get(id = answer.question_id)) for answer in answers]
 	username = User.objects.get(id=user_id).username
-	context = {'aqs': aqs, 'user_id' : user_id, 'username' : username}
+	context = {'answers': answers, 'user_id' : user_id, 'username' : username}
 	return render(request, 'polls/user_answers.html', context)
 
 @login_required

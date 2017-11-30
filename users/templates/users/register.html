@@ -1,11 +1,16 @@
 {% extends "polls/base.html" %}
 {% block content %}
-<div class="container-fluid col-xs-6" id="qbox">
-	<form method="post" action="{% url 'users:register' %}">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<button name="submit">register</button>
-		<input type="hidden" name="next" value="{% url 'polls:home' %}" />
-	</form>
+<div style="margin-top: 50px">
+	<div class="col-xs-3"></div>
+	<div class="container-fluid col-xs-5" id="qbox">
+		<form method="post" action="{% url 'users:register' %}">
+			{% csrf_token %}
+			<p><label for="id_username">Username:</label> <input type="text" class="form-control" name="username" autofocus required id="id_username" maxlength="150" /> <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span></p>
+	<p><label for="id_password1">Password:</label> <input type="password" class="form-control" name="password1" required id="id_password1" /> <span class="helptext"><ul><li>Your password can&#39;t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can&#39;t be a commonly used password.</li><li>Your password can&#39;t be entirely numeric.</li></ul></span></p>
+	<p><label for="id_password2">Password confirmation:</label> <input type="password" class="form-control" name="password2" required id="id_password2" /> <span class="helptext">Enter the same password as before, for verification.</span></p>
+			<button class="btn btn-default" name="submit">register</button>
+			<input type="hidden" name="next" value="{% url 'polls:home' %}" />
+		</form>
+	</div>
 </div>
 {% endblock content %}

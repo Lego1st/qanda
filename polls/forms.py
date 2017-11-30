@@ -1,7 +1,16 @@
 from django import forms
 
-from .models import Question, Answer, Comment
+from .models import *
 from django.conf import settings 
+
+class ProfileForm(forms.ModelForm):
+	class Meta:
+		model = Profile
+		fields = ('name', 'description')
+		labels = {'name': 		 'Name       ',
+					'description': 'Description'}
+		widgets = {'name' : forms.Textarea(attrs={'class' : 'form-control', 'rows' : 1}),
+					'description' : forms.Textarea(attrs={'class' : 'form-control', 'rows' : 5, 'placeholder' : 'More about you ...'})}
 
 class QuestionForm(forms.ModelForm):
 	# category = forms.Select(choices = settings.CATEGORIES)

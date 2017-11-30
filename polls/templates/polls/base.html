@@ -21,9 +21,21 @@
 		    </div>
 		    <ul class="nav navbar-nav navbar-left">
 				<li><a href="/">Home</a></li>
-				<li><a data-toggle="modal" href="{% url 'polls:newquestion' %}" data-target="#modal" data-tooltip>Ask</a></li> 
+				
 				{% if user.is_authenticated %}
+					<li><a data-toggle="modal" href="{% url 'polls:newquestion' %}" data-target="#modal" data-tooltip>Ask</a></li> 
 					<li><a href="{% url 'polls:profile' user.id %}">Profile</a></li>
+			    {% endif %}
+
+		    </ul>
+
+		    <form class="navbar-form navbar-left" method="post" action="{% url 'polls:search' %}">
+		    	{% csrf_token %}
+		    	<input type="text" class="form-control" name="keyword" placeholder="Search">
+	    	</form>
+
+	    	<ul class="nav navbar-nav navbar-right">
+				{% if user.is_authenticated %}
 			    	<li><a style="color: blue">Hello, {{ user.username }}.</a></li>
 			    	<li><a href="{% url 'users:logout' %}">Log out</a></li>
 			    {% else %}
@@ -32,11 +44,6 @@
 			    {% endif %}
 
 		    </ul>
-
-		    <form class="navbar-form navbar-right" method="post" action="{% url 'polls:search' %}">
-		    	{% csrf_token %}
-		    	<input type="text" class="form-control" name="keyword" placeholder="Search">
-	    	</form>
 		  </div>
 		</nav>
 

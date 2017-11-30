@@ -45,7 +45,7 @@ def new_question(request):
 			new_ques.time = timezone.now()
 			new_ques.user = request.user
 			new_ques.save()
-			return HttpResponseRedirect(reverse('polls:home'))
+			return HttpResponseRedirect(reverse('polls:details', args=[new_ques.id]))
 	context = {'form': form}
 	return render(request, 'polls/new_question.html', context)
 
@@ -134,21 +134,23 @@ def vote(request, answer_id):
 @login_required
 def profile(request, user_id):
 	asked_questions = Question.objects.filter(user__id = user_id)
-	context = {'asked_questions' : asked_questions, 'user_id' : int(user_id), 'username' : User.objects.get(id=user_id).username}
+	user = User.objects.get(id = user_id)
+	context = {'asked_questions' : asked_questions, 'user_id' : int(user_id), 'target_user' : user}
 	return render(request, 'polls/profile.html', context)
 
 @login_required
 def user_answers(request, user_id):
 	answers = Answer.objects.values('content', 'time', 'user__username', 'question__content', 'question__id', 'user__id', 'question__category').filter(user__id = user_id)
 	# aqs = [(answer, Question.objects.get(id = answer.question_id)) for answer in answers]
-	username = User.objects.get(id=user_id).username
-	context = {'answers': answers, 'user_id' : int(user_id), 'username' : username}
+	user = User.objects.get(id = user_id)
+	context = {'answers': answers, 'user_id' : int(user_id), 'target_user' : user}
 	return render(request, 'polls/user_answers.html', context)
 
 @login_required
 def user_follows(request, user_id):
 	fl_questions = Question.objects.filter(followers = user_id)
-	context = {'fl_questions' : fl_questions, 'user_id' : int(user_id), 'username' : User.objects.get(id=user_id).username}
+	user = User.objects.get(id = user_id)
+	context = {'fl_questions' : fl_questions, 'user_id' : int(user_id), 'target_user' : user}
 	return render(request, 'polls/user_follows.html', context)
 
 @login_required
@@ -168,7 +170,6 @@ def search(request):
 
 @login_required
 def accept(request, answer_id):
-	print "SOME THING HERE"
 	answer = Answer.objects.get(id = answer_id)
 	if answer.accepted:
 		answer.accepted = False
@@ -180,3 +181,23 @@ def accept(request, answer_id):
 		answer.accepted = True
 	answer.save()
 	return HttpResponseRedirect(reverse('polls:details', args=[answer.question_id]))
+
+@login_required
+def edit_profile(request, user_id):
+	user = User.objects.get(id = user_id)
+	error = False
+	if request.user != user:
+		error = True
+	else:
+		print ("YEAHHHHADSFADSFSD")
+		if request.method != 'POST':
+			# No data. Create a blank form
+			profile_form = ProfileForm()
+		else:
+			# Data submitted; process data
+			profile_form = ProfileForm(request.POST, instance=request.user.profile)
+			if profile_form.is_valid():
+				profile_form.save()
+				return HttpResponseRedirect(reverse('polls:profile', args=[user_id]))
+	context = {'error' : error, 'profile_form' : profile_form}
+	return render(request, 'polls/edit_profile.html', context)

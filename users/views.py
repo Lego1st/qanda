@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
-
+from polls.models import *
 # Create your views here.
 def logout_view(request):
 	logout(request)
@@ -19,8 +19,9 @@ def register(request):
 		form = UserCreationForm(data = request.POST)
 
 		if form.is_valid():
-			print "asdfafdsfasdfasfsddf"
-			new_user = form.save()
+			new_user = form.save(commit=False)
+			new_user.profile = Profile('','')
+			new_user.save()
 			authenticated_user = authenticate(username=new_user.username, password=request.POST['password1'])
 			login(request, authenticated_user)
 			return HttpResponseRedirect(reverse('polls:home'))

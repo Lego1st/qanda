@@ -1,0 +1,20 @@
+{% extends "polls/base.html" %}
+{% load static%}
+
+{% block content %}
+	<div class="container-fluid" id="mainview">
+		<div style="margin: 50 200 50 50">
+			{% if error %}
+				<h1> You dont have permission here ! </h1>
+			{% else %}
+				<h2> Edit your profile ({{user.username}}) !</h2>
+				<form method="post" action="{% url 'polls:editprofile' user.id %}">
+					{% csrf_token %}
+					Name<br><input class="form-control" type="text" name="name" value="{{user.profile.name}}">
+					<br>Description:<br><input class="form-control" type="text" name="description" value="{{user.profile.description}}"> 
+					<br><input type="submit" class="btn btn-default" value="Save">
+				</form>
+			{% endif %}
+		</div>
+	</div>
+{% endblock content %}

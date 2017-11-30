@@ -58,6 +58,11 @@ h1 {
 	text-decoration: none;
 }
 
+.user-details {
+	color: #acacac;
+	margin-left: 20px;
+}
+
 img.resize {
 	border-radius: 50px;
 	border: solid;

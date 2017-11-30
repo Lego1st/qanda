@@ -17,5 +17,6 @@ urlpatterns = [
 	url(r'^profile/(?P<user_id>[0-9]+)/answers/$', views.user_answers, name='useranswers'),
 	url(r'^profile/(?P<user_id>[0-9]+)/follows/$', views.user_follows, name='userfollows'),
 	url(r'^category/(?P<category>\w+)/$', views.category, name='category'),
-	url(r'^search/$', views.search, name="search")
+	url(r'^search/$', views.search, name="search"),
+	url(r'^profile/(?P<user_id>[0-9]+)/edit/$', views.edit_profile, name='editprofile'),
 ]

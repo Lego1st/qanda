@@ -25,15 +25,21 @@
 				{% if user.is_authenticated %}
 					<li><a data-toggle="modal" href="{% url 'polls:newquestion' %}" data-target="#modal" data-tooltip>Ask</a></li> 
 					<li><a href="{% url 'polls:profile' user.id %}">Profile</a></li>
+					<li>
+					<a onclick="toggle_visibility('search_bar');">
+				      	<span class="glyphicon glyphicon-search"></span>
+				    </a>
+				    </li>
 			    {% endif %}
 
 		    </ul>
-
-		    <form class="navbar-form navbar-left" method="post" action="{% url 'polls:search' %}">
-		    	{% csrf_token %}
-		    	<input type="text" class="form-control" name="keyword" placeholder="Search">
-	    	</form>
-
+		    	
+		    <div id="search_bar" style="display: none;" >
+			    <form class="navbar-form navbar-left" method="post" action="{% url 'polls:search' %}">
+			    	{% csrf_token %}
+			    	<input type="text" class="form-control" name="keyword" placeholder="Search">
+		    	</form>
+    		</div>	
 	    	<ul class="nav navbar-nav navbar-right">
 				{% if user.is_authenticated %}
 			    	<li><a>Hello, {{ user.username }}</a></li>
@@ -69,6 +75,14 @@
 
 		{% block content %}
 		{% endblock content %}
-		
+		<script type="text/javascript">
+			function toggle_visibility(id) {
+				var e = document.getElementById(id);
+				if(e.style.display == 'block')
+				   e.style.display = 'none';
+				else
+				   e.style.display = 'block';
+			}
+		 </script>
 	</body>
 </html>

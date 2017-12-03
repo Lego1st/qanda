@@ -3,7 +3,8 @@
 
 {% block content %}
 	<div class="container-fluid" id="mainview">
-		<div style="margin: 50 200 50 50">
+		<div class="col-xs-3"></div>
+		<div class="col-xs-5" style="">
 			{% if error %}
 				<h1> You dont have permission here ! </h1>
 			{% else %}
@@ -11,7 +12,7 @@
 				<form method="post" action="{% url 'polls:editprofile' user.id %}">
 					{% csrf_token %}
 					Name<br><input class="form-control" type="text" name="name" value="{{user.profile.name}}">
-					<br>Description:<br><input class="form-control" type="text" name="description" value="{{user.profile.description}}"> 
+					<br>Description:<br><textarea class="form-control" rows="10" type="text" name="description"> {{user.profile.description}} </textarea> 
 					<br><input type="submit" class="btn btn-default" value="Save">
 				</form>
 			{% endif %}

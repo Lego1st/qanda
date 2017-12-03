@@ -23,13 +23,12 @@ def home(request, new_feed='0'):
 	# questions = [1, 2, 3, 4, 5]
 	questions = []
 	answers = []
+	recents = Question.objects.order_by('-time')[:7]
 	if new_feed == '0':
 		questions = Question.objects.annotate(follow_num = Count('followers')).order_by('-follow_num')
-	elif new_feed == '1':
-		questions = Question.objects.order_by('-time')
 	else:
 		answers = Answer.objects.values('content', 'time', 'user__username', 'question__content', 'question__id', 'user__id', 'question__category').annotate(vote_num = Count('voters')).order_by('-vote_num')
-	return render(request, 'polls/home.html', context = {'top_users' : top_users, 'questions' : questions, 'new_feed' : new_feed, 'answers' : answers})
+	return render(request, 'polls/home.html', context = {'top_users' : top_users, 'questions' : questions, 'new_feed' : new_feed, 'answers' : answers, 'recents' : recents})
 
 @login_required
 def new_question(request):

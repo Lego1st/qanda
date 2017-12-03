@@ -3,30 +3,31 @@
 
 {% block content %}
 		<div class="container-fluid" id="mainview">
-			<div class="profile-head">
-				<h3 class="accent-text" style="font-size:30px"> {{ target_user.username }} </h3>
-				<div class="user-details">
-					<h3 class="accent-text" style="font-size:20px"> 
-					{% if target_user.profile.name %}
-						{{ target_user.profile.name }} 
-					{% else %}
-						Unkown name
-					{% endif %}
-					</h3>
-					<p><i>
-						{% if target_user.profile.description %}
-							Description: {{ target_user.profile.description }} 
+			<div class="row" style="margin-bottom: 20px">
+				<div class="profile-head col-xs-5">
+					<h3 class="accent-text" style="font-size:30px"> {{ target_user.username }} </h3>
+					<div class="user-details">
+						<h3 class="accent-text" style="font-size:20px"> 
+						{% if target_user.profile.name %}
+							{{ target_user.profile.name }} 
 						{% else %}
-							No description yet ! 
+							Unkown name
 						{% endif %}
-					</i></p> 
-					{% if user.id == target_user.id %}
-						<a href="{% url 'polls:editprofile' user.id %}">Edit profile</a>
-					{% endif %}
+						</h3>
+						<p><i>
+							{% if target_user.profile.description %}
+								Description: {{ target_user.profile.description }} 
+							{% else %}
+								No description yet ! 
+							{% endif %}
+						</i></p> 
+						{% if user.id == target_user.id %}
+							<a href="{% url 'polls:editprofile' user.id %}">Edit profile</a>
+						{% endif %}
+					</div>
 				</div>
-				<hr class="hrstyle" width="100%">
 			</div>
-			<div class="profile-main">
+			<div class="profile-main" style="margin-top: 20px">
 			<!-- left pannel -->
 				<div class="col-xs-2 test1 left-panel" style="margin-top: 10px">
 					

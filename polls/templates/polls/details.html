@@ -92,7 +92,14 @@
 	{% endfor %}
 </div>
 <div class="col-xs-6" style="margin-top: 80px; padding: 0 100 0 100" >
-	<div class="side-pannel-header" style="margin-bottom:10px">Related questions:</div>
+	<div class="side-pannel-header" style="margin-bottom:10px">U might be interested in:</div>
 	<hr class="hrstyle" width="100%"> 
+	<div style="padding: 10 10 10 10">
+		{% for rel in relateds %}
+			<div style=" margin-top: 10px">
+				<a href="{% url 'polls:details' rel.id %}">{{ rel.content }}</a>
+			</div>
+		{% endfor %}
+	</div>
 </div> 
 {% endblock content %}

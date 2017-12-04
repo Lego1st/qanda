@@ -12,6 +12,10 @@ from django.views.generic import UpdateView
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
+from django.db.models import Q
+import numpy as np 
+import requests
+import json
 from .models import *
 from .forms import *
 # Create your views here.
@@ -56,6 +60,7 @@ def detail(request, question_id):
 		answers = Answer.objects.filter(question=question).order_by('-accepted','-time')
 		comments = []
 		votes = []
+		relateds = []
 		follow = "Follow"
 		if request.user in question.followers.all():
 			follow = "Unfollow"
@@ -67,10 +72,42 @@ def detail(request, question_id):
 				votes.append((answer.id, 'Vote', len(answer.voters.all())))
 			for comment in Comment.objects.filter(answer=answer):
 				comments.append(comment)
+
+		def sen2vec(txts):
+			payload = {'text': txts}
+			r = requests.post('http://localhost:5000/', data=json.dumps(payload))
+			res = json.loads(r.text)
+			return res['vector']
+
+		def dist(v1, v2):
+			d = v1 - v2
+			return np.linalg.norm(d)
+
+		def related(target_ques, questions):
+			# ques_dis_list = [(question, min[dist(follow, question) for follow in follows]) for question in questions]
+			txts = [question.content for question in questions]
+			txts.append(target_ques.content)
+			vectors = sen2vec(txts)
+			ques_dis_list = []
+			i = 0
+			for question in questions:
+				p = dist(np.array(vectors[-1], dtype=np.float32), np.array(vectors[i], dtype=np.float32))
+				ques_dis_list.append((question, p))
+				i = i + 1
+
+			ques_dis_list.sort(key = lambda x: x[1])
+			res = [question for question, p in ques_dis_list]
+			return res
+
+		questions = Question.objects.filter(~Q(id = question_id))
+		try:
+			relateds = related(question, questions)[:5]
+		except:
+			relateds = Question.objects.annotate(follow_num = Count('followers')).order_by('-follow_num').filter(~Q(id = question_id))[:5]
 	except:
 		raise Http404("Question does not exist")
 	context = {'question': question, 'answers' : answers, 'num' : len(answers), 'myform': AnswerForm(), 'comments': comments, 
-				'cmtform' : CommentForm(), 'follow' : follow, 'follow_num' : follow_num, 'votes' : votes}
+				'cmtform' : CommentForm(), 'follow' : follow, 'follow_num' : follow_num, 'votes' : votes, 'relateds' : relateds}
 	return render(request, template_name, context)
 
 @login_required
@@ -188,7 +225,6 @@ def edit_profile(request, user_id):
 	if request.user != user:
 		error = True
 	else:
-		print ("YEAHHHHADSFADSFSD")
 		if request.method != 'POST':
 			# No data. Create a blank form
 			profile_form = ProfileForm()

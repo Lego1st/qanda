@@ -236,3 +236,8 @@ def edit_profile(request, user_id):
 				return HttpResponseRedirect(reverse('polls:profile', args=[user_id]))
 	context = {'error' : error, 'profile_form' : profile_form}
 	return render(request, 'polls/edit_profile.html', context)
+	
+@login_required
+def delete_ques(request, question_id):
+	Question.objects.get(id=question_id).delete()
+	return HttpResponseRedirect(reverse('polls:home'))

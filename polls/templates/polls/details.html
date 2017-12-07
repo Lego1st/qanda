@@ -5,7 +5,7 @@
 
 <div class="container-fluid col-xs-6" id="qbox">
 	<div><a href="{% url 'polls:category' question.category %}" class="category"><i>Category:</i> {{question.category}}</a></div>
-	<h2><a href="{% url 'polls:details' question.id %}" class="accent-text question-text">{{question.content}}</a></h2>
+	<h2><p class="accent-text">{{question.content}}</p></h2>
 	<div><span class="tagging-text">Asked by </span><a href="{% url 'polls:profile' question.user.id %}" class="accent-text username">{{question.user.username}}</a></div>
 	<div class="time">{{question.time}}</div>
 	<div class="row" style="margin-top: 15px; margin-bottom: 5px">
@@ -14,6 +14,11 @@
 			<a href="{% url 'polls:follow' question.id %}" class="side-pannel-text">{{ follow }}</a> 
 			<span class="side-pannel-text">({{ follow_num }})</span>
 		</div>
+		{% if question.user.id == user.id %}
+		<div class="col-xs-2">
+			<a href="{% url 'polls:delete' question.id %}" style="color:red">Delete</a>
+		</div>
+		{% endif %}
 	</div>
 	<br><br>
 	<script type="text/javascript">
@@ -46,7 +51,7 @@
 		<p class="answer-text accent-text"> {{ answer.content }} </p>
 
 		<div class="row" style="margin-top: 15px; margin-bottom: 15px">
-			<div class="col-xs-2" onclick="toggle_visibility('new_cmt_form');"> <a class="side-pannel-text" href="#">Comment</a></div>
+			<div class="col-xs-2"> <a class="side-pannel-text" href="#">Comment</a></div>
 			<div class="col-xs-8">
 					{% for id, text, no in votes %}
 					{% if id == answer.id %}
@@ -85,7 +90,7 @@
 						</div>
 				{% endif %}
 			{% endfor %}
-			<div id="new_cmt_form" class="cmt-item" style="display: none">{% include 'polls/new_comment.html' with form=cmtform answer_id=answer.id %}
+			<div id="new_cmt_form" class="cmt-item">{% include 'polls/new_comment.html' with form=cmtform answer_id=answer.id %}
 			</div>
 		</div> 
 	</div>

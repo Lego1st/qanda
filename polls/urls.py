@@ -19,4 +19,5 @@ urlpatterns = [
 	url(r'^category/(?P<category>\w+)/$', views.category, name='category'),
 	url(r'^search/$', views.search, name="search"),
 	url(r'^profile/(?P<user_id>[0-9]+)/edit/$', views.edit_profile, name='editprofile'),
+	url(r'^delete/(?P<question_id>[0-9]+)/$', views.delete_ques, name='delete'),
 ]

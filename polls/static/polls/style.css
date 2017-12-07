@@ -148,8 +148,8 @@ hr.hrstyle {
     font-size: 30px;
 	color: black;
 	border-bottom: 1px solid transparent;
-	display: inline-block;
-	line-height: 0.85;
+	display: inline;
+	line-height: 1.25;
 	text-shadow:
 		2px 2px white,
 		2px -2px white,

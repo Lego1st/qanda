@@ -122,4 +122,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # My settings
 LOGIN_URL = '/users/login/'
-CATEGORIES = ['Others', 'Technology', 'Life and Living', 'Mathematics', 'Food', 'Knowledge', 'Movie', 'Art', 'Book']
+CATEGORIES = ['Others', 'Technology', 'Life', 'Mathematics', 'Food', 'Knowledge', 'Movie', 'Art', 'Book']

@@ -99,7 +99,7 @@ def detail(request, question_id):
 			res = [question for question, p in ques_dis_list]
 			return res
 
-		questions = Question.objects.filter(~Q(id = question_id))
+		questions = Question.objects.filter(category=question.category).filter(~Q(id = question_id))
 		try:
 			relateds = related(question, questions)[:5]
 		except:
